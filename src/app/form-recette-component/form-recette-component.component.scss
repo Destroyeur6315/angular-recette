@@ -1,0 +1,21 @@
+.example-full-width{
+    width: 75%;
+}
+
+.container-button{
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-listerecette{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    width: auto;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+}

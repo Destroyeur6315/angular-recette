@@ -1,0 +1,11 @@
+<div class="my-container">
+    <div>
+        <button (click)="redirigeToAccueil()">{{ listeLink[0] }}</button>
+        <button (click)="redirigeToIngredient()">{{ listeLink[1] }}</button>
+    </div>
+    
+    <div>
+        <button *ngIf="!isAuthenticated()" (click)="login()">login</button>
+        <button *ngIf="isAuthenticated()" (click)="logout()">logout</button>
+    </div>
+</div>

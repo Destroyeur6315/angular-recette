@@ -1,0 +1,66 @@
+<mat-card appearance="outlined">
+    <mat-card-content>From recette
+
+        <!-- Formulaire Recette -->
+        <form #form="ngForm" (ngSubmit)="onSubmit(form, subForm)">
+
+            <table class="example-full-width" cellspacing="0">
+                <tr>
+                    <td><mat-form-field class="example-full-width">
+                            <mat-label>Nom</mat-label>
+                            <input matInput type="text" name="nom" ngModel required>
+                        </mat-form-field></td>
+                </tr>
+                <tr>
+                    <td><mat-form-field class="example-full-width">
+                        <mat-label>Description</mat-label>
+                        <input matInput type="text" name="description" ngModel required>
+                    </mat-form-field></td>
+                </tr>
+            </table>
+
+            <!-- Formulaire Ingrédient -->
+            <form #subForm="ngForm" (ngSubmit)="addIngredientToRecette(subForm, $event)">
+                <table class="" cellspacing="0"><tr>
+                    <td>
+                        <mat-form-field>
+                            <mat-label>Ingrédients</mat-label>
+                            <mat-select matNativeControl ngModel name="ingredient">
+                              @for (food of foods; track food) {
+                                <mat-option [value]="food.value">{{food.value}}</mat-option>
+                              }
+                            </mat-select>
+                          </mat-form-field>
+                    </td>
+                    <td><mat-form-field class="">
+                      <mat-label>Quantité</mat-label>
+                      <input matInput placeholder="3" type="number" name="quantite" ngModel required>
+                    </mat-form-field></td>
+                    <td class="container-button">
+                        <button type="submit" [disabled]="!subForm.form.valid">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                        <!-- <button mat-fab aria-label="Example icon button with a delete icon" (click)="removeIngredientToRecette()">
+                            <mat-icon>delete</mat-icon>
+                        </button> -->
+                    </td>
+                  </tr>
+                </table>
+            </form>
+             <!-- Formulaire Ingrédient -->
+
+            <div class="container-listerecette" *ngFor="let ingredient of listeIngredient">
+                {{ingredient.quantite}} {{ingredient.type.value}} 
+                <button (click)="deleteIngredeint(ingredient.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+
+            <button type="submit" [disabled]="!form.form.valid">
+                Submit
+            </button>
+        </form>
+        <!-- Formulaire Recette -->
+
+    </mat-card-content>
+</mat-card>

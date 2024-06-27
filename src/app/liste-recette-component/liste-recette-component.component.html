@@ -1,0 +1,47 @@
+<div class="my-container">
+    <div class="recette">
+        <mat-card appearance="outlined">
+            <mat-card-content class="card-recette">
+                <div class="card-recette-top">
+                    Liste de Recette
+                    <button class="button-add-recette" mat-fab aria-label="Example icon button with a delete icon" (click)="addRecette()">
+                      <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+                <div *ngFor="let recette of listeRecette">
+                   <app-recette-component
+                    [nom]="recette.nom"
+                    [description]="recette.description"
+                    [id]="recette.id"
+                   ></app-recette-component>
+                    <!-- <table mat-table [dataSource]="dataSource">
+                        <ng-container matColumnDef="name">
+                          <th mat-header-cell *matHeaderCellDef> Name </th>
+                          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                        </ng-container>
+                    
+                        <ng-container matColumnDef="ingredients">
+                          <th mat-header-cell *matHeaderCellDef> Ingredients </th>
+                          <td mat-cell *matCellDef="let element"> {{element.ingredients}} </td>
+                        </ng-container>
+                    
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                      </table>
+                    
+                    <mat-paginator [length]="totalItems" [pageSize]="itemsPerPage" [pageSizeOptions]="[5, 10, 25, 100]" (page)="pageEvent = $event">
+                    </mat-paginator> -->
+                </div> 
+                <div *ngIf="listeRecette.length < 1">
+                  Aucune recette... N'hésitez plus et ajoutez en une en cliquant sur le plus !
+                </div>    
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="form-recette" *ngIf="display">
+        <app-form-recette-component (recetteadd)="onRecetteAdd()">
+        </app-form-recette-component>
+    </div>
+</div>
+
+  
