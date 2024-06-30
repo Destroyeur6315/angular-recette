@@ -10,13 +10,11 @@ import { HttpClient } from "@angular/common/http";
 })
 export class RecetteService{
 
+    private recette_commande: Recette[] = [];
+
     constructor(
       private httpClient: HttpClient
     ){}
-
-    getRecetteAPI(): Observable<Recette[]>{
-      return this.httpClient.get<Recette[]>("http://localhost/1234");
-    }
 
     getAllRecette(): Observable<Recette[]>{
         let recettesStorage = localStorage.getItem('recettes');
@@ -32,7 +30,7 @@ export class RecetteService{
               ingredient.forEach((element:any) => {
                 myListeIngredient.push({
                   id: element.id,
-                  type: {value: element.type.value},
+                  type: {name: element.type.name, description: element.type.description, id: element.type.id},
                   quantite: element.quantite
                 })
               });
@@ -62,7 +60,7 @@ export class RecetteService{
             ingredient.forEach((element:any) => {
                 myListeIngredient.push({
                 id: element.id,
-                type: {value: element.type.value},
+                type: {name: element.type.name, description: element.type.description, id: element.type.id},
                 quantite: element.quantite
                 })
             });
@@ -83,5 +81,14 @@ export class RecetteService{
       let recettes = JSON.parse(localStorage.getItem('recettes') || '[]');
       recettes.push(nouvelle_recette);
       localStorage.setItem('recettes', JSON.stringify(recettes)); 
+    }
+
+    addToCommande(recette: Recette | undefined){
+      if(recette)
+        this.recette_commande.push(recette);
+    } 
+
+    getRecetteCommande(): Observable<Recette[]>{
+      return of(this.recette_commande);
     }
 }

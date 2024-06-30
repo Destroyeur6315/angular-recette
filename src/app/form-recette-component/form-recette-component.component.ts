@@ -39,7 +39,10 @@ export class FormRecetteComponentComponent {
   {}
 
   ngOnInit(){
-    this.foods = this.ingredientservice.getListeTypeIngredient();
+    // this.foods = this.ingredientservice.getListeTypeIngredient();
+    this.ingredientservice.getListeTypeIngredient().subscribe((listeingredient: TypeIngredient[]) => {
+      this.foods = listeingredient;
+    })
   }
 
   removeIngredientToRecette() {
@@ -49,7 +52,7 @@ export class FormRecetteComponentComponent {
   addIngredientToRecette(form: NgForm, event: Event) {
     if(this.listeIngredient.length < 1){
       this.listeIngredient.push({
-        type: { value: form.value.ingredient} as TypeIngredient, 
+        type: { name: form.value.ingredient, description: "", id: 0}, 
         quantite: form.value.quantite, 
         id: 0 });
       return
@@ -58,7 +61,7 @@ export class FormRecetteComponentComponent {
     const new_id = Math.max(...this.listeIngredient.map(i => i.id)) +1;
 
     this.listeIngredient.push({
-      type: { value: form.value.ingredient} as TypeIngredient, 
+      type: { name: form.value.ingredient, description: "", id: 0}, 
       quantite: form.value.quantite, 
       id: new_id });
   }

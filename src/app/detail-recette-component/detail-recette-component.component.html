@@ -8,7 +8,7 @@
     <mat-card-content>
         <h2>Liste ingrédients :</h2>
         <ul *ngFor="let ingredient of recette?.ingredient">
-            <li>{{ ingredient.quantite }} {{ ingredient.type.value }}</li>
+            <li>{{ ingredient.quantite }} {{ ingredient.type.name }}</li>
         </ul>
     </mat-card-content> 
 </mat-card>

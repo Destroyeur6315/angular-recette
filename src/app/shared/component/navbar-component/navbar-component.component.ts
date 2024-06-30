@@ -49,5 +49,9 @@ export class NavbarComponentComponent {
   isAuthenticated(){
     return this.authService.isAuthenticated();
   }
+
+  redirigeToRecette() {
+    this.rooter.navigateByUrl('/liste-recette');
+  }
     
 }

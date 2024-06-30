@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  // private _isAuthenticated: boolean = false;
 
   login() {
     localStorage.setItem('isAdmin', JSON.stringify(true)); 

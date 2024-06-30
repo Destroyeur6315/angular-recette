@@ -1,4 +1,6 @@
 export interface TypeIngredient {
-    value: string;
-  }
+    id: number;
+    name: string;
+    description: string;
+}
   

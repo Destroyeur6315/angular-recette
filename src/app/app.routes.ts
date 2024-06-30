@@ -5,6 +5,7 @@ import { DetailRecetteComponentComponent } from './detail-recette-component/deta
 import { filter } from 'rxjs';
 import { ListeIngredientComponentComponent } from './liste-ingredient-component/liste-ingredient-component.component';
 import { AuthGuard } from './auth/auth.guard';
+import { ListeCommandeComponent } from './liste-commande/liste-commande.component';
 
 export const routes: Routes = [
     {
@@ -14,6 +15,10 @@ export const routes: Routes = [
     },
     {
         path: 'accueil',
+        component: ListeCommandeComponent
+    },
+    {
+        path: 'liste-recette',
         component: ListeRecetteComponentComponent
     },
     {

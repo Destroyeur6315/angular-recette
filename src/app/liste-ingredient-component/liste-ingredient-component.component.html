@@ -1,6 +1,32 @@
 <div class="my-container">
-    <h1>Liste des ingrédients:</h1>
-    <ul *ngFor="let ingredient of listeIngredient">
-        <li>{{ingredient.value}}</li>
-    </ul>
+    <div class="left">
+        <h1>Liste des ingrédients:</h1>
+        <ul *ngFor="let ingredient of listeIngredient">
+            <li>{{ingredient.name}}</li>
+        </ul>
+    </div>
+    <div class="right">
+        <h2>Ajouter un ingrédient</h2>
+        <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+
+            <table class="example-full-width" cellspacing="0">
+                <tr>
+                    <td><mat-form-field class="example-full-width">
+                            <mat-label>Nom</mat-label>
+                            <input matInput type="text" name="nom" ngModel required>
+                        </mat-form-field></td>
+                </tr>
+                <tr>
+                    <td><mat-form-field class="example-full-width">
+                        <mat-label>Description</mat-label>
+                        <input matInput type="text" name="description" ngModel required>
+                    </mat-form-field></td>
+                </tr>
+            </table>
+
+            <button type="submit" [disabled]="!form.form.valid">
+                Ajouter
+            </button>
+        </form>
+    </div>
 </div>
